@@ -29,7 +29,7 @@ This solution uses 512 bit RSA keys. To generate necessary keys, you need to dow
 
 5. Create a Public Key based on your newly created private key:
 
-> openssl rsa -in private_key.pem -outform PEM -pubout -out public_key.pem
+  > openssl rsa -in private_key.pem -outform PEM -pubout -out public_key.pem
 
 ## Tools used
 * Node.js
