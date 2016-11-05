@@ -1,9 +1,7 @@
-//"C:\Program Files\MongoDB\Server\3.2\bin\mongod.exe" --dbpath C:\Users\Slawek\Desktop\auth-server\data\db
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt-nodejs');
 
-// Model definition
 const userSchema = new Schema({
     email: { type: String, unique: true, lowercase: true },
     password: String
@@ -26,6 +24,16 @@ userSchema.pre('save', function(next) {
         })
     })
 });
+
+userSchema.methods.comparePassword = function(candidatePassword, callback) {
+    bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
+        if(err) {
+            return callback(err);
+        }
+
+        callback(null, isMatch);
+    })
+};
 
 //Model creation
 const userModel = mongoose.model('user', userSchema);

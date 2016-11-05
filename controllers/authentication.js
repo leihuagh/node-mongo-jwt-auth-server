@@ -1,4 +1,18 @@
 const User = require('../models/user');
+var jwt = require('jsonwebtoken');
+var fs = require('fs');
+const config = require('../config/environment');
+
+function tokenForUser(user) {
+    const timestamp = new Date().getTime();
+
+    // sign with RSA SHA256
+    return jwt.sign({ sub: user.id }, config.development.privateKey, { algorithm: 'RS256'});
+}
+
+exports.signin = function(req, res, next) {
+    res.send({ token: tokenForUser(req.user) });
+};
 
 exports.signup = function(req, res, next) {
     const email = req.body.email;
@@ -28,7 +42,7 @@ exports.signup = function(req, res, next) {
                 return next(error)
             }
 
-            return res.json({ success: true, message: 'User with email ' + user.email + ' was successfully created.'})
+            return res.json({ token: tokenForUser(user) })
         });
 
     })

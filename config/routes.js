@@ -1,19 +1,24 @@
-var Authentication = require('../controllers/authentication');
+const Authentication = require('../controllers/authentication');
+const passportService = require('../services/passport');
+const passport = require('passport');
+
+const requireAuth = passport.authenticate('jwt', { session: false });
+const requireSignIn = passport.authenticate('local', { session: false });
 
 module.exports = function(app) {
 
-    app.all('/', function(req, res, next){
-        res.send("Auth-server is alive :). Send your credentials to the '/token' endpoint");
+    app.get('/', requireAuth, function(req, res, next){
+        res.send({ message: "success" });
     });
 
-    app.post('/token', function(){});
-
-    app.get('/logout', function(){})
+    app.post('/signin', requireSignIn, Authentication.signin);
 
     app.post('/signup', Authentication.signup);
 
+    //routes to be used in the future if needed
+    app.post('/token', function(){});
+    app.get('/logout', function(){});
     app.post('/forgotpassword', function(){});
-
     app.get('/verificationemail', function(){})
 
 };
