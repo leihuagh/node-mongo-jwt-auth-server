@@ -1,14 +1,15 @@
 var app = require('./config/express')();
+var config = require('./config/environment');
 var routes = require('./config/routes');
-var environment = require('./config/environment');
+
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 routes(app);
-mongoose.connect(environment.development.db);
+mongoose.connect(config[config.env].db);
 
-app.listen(environment.development.port);
+app.listen(config[config.env].port);
 
 console.log("app is running");
-console.log('listening on port ' + environment.development.port);
+console.log('listening on port ' + config[config.env].port);
 

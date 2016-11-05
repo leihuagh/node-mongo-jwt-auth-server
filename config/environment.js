@@ -7,6 +7,7 @@
  */
 
 module.exports = {
+    env: 'development',
     development: {
         port: 8888,
         db: 'mongodb://localhost:auth/auth',

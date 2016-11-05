@@ -7,7 +7,7 @@ function tokenForUser(user) {
     const timestamp = new Date().getTime();
 
     // sign with RSA SHA256
-    return jwt.sign({ sub: user.id }, config.development.privateKey, { algorithm: 'RS256'});
+    return jwt.sign({ sub: user.id }, config[config.env].privateKey, { algorithm: 'RS256'});
 }
 
 exports.signin = function(req, res, next) {
