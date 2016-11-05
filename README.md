@@ -24,10 +24,11 @@ This solution uses 512 bit RSA keys. To generate necessary keys, you need to dow
 4. Create a Private Key:
 > openssl genrsa -out private_key.pem 512
 
-If no file was created, check if you have write permissions in the current location. You can also change the location of the generated file to something like: 
-C:\Users\your_user_name\Desktop to save it seamlessly. If this is the case, simply add the location before the output file name in the command above. 
+  If no file was created, check if you have write permissions in the current location. You can also change the location of the generated   file to something like: 
+  C:\Users\your_user_name\Desktop to save it seamlessly. If this is the case, simply add the location before the output file name in the   command above. 
 
-4. Create a Public Key based on your newly created private key:
+5. Create a Public Key based on your newly created private key:
+
 > openssl rsa -in private_key.pem -outform PEM -pubout -out public_key.pem
 
 ## Tools used
