@@ -6,12 +6,6 @@ This solution is based on private & public key pair
 ## How to Use
 ...
 
-## Tools used
-* Node.js
-* Passport
-* Bcrypt
-* MongoDB (Mongoose)
-* OpenSSL - to generate private & public key pair
 
 ## Private & Public key pair generation
 This solution uses 512 bit RSA keys. To generate necessary keys, you need to download OpenSSL software. I will describe how to do this on Windows. 
@@ -30,6 +24,13 @@ C:\Users\your_user_name\Desktop to save it seamlessly. If this is the case, simp
 
 4. Create a Public Key based on your newly created private key:
 > openssl rsa -in private_key.pem -outform PEM -pubout -out public_key.pem
+
+## Tools used
+* Node.js
+* Passport
+* Bcrypt
+* MongoDB (Mongoose)
+* OpenSSL - to generate private & public key pair
 
 ## TODO
 * Replace 512 bit keys with something more safe
