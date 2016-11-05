@@ -1,6 +1,7 @@
 # node-mongo-jwt-auth-server
 This is a realization of the Auth Server, which should be separated from the actual resource server.
-This solution is based on private & public key pair
+
+This solution is based on private & public key pair signing method. This method helps when you want to avoid sharing "secret" string if your Resource Server is separated from the Auth Server. Thanks to the keys you can keep a private key in the Auth Server (and only there) and your "Public" Resource server will handle a token validation (and multitenancy if needed) using only a public key without ever knowing how a private key looks like. 
 
 
 ## How to Use
