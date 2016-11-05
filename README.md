@@ -22,7 +22,7 @@ This solution uses 512 bit RSA keys. To generate necessary keys, you need to dow
 
 3. In terminal go to the location where the installed OpenSSL binaries exist (For example C:\Program Files (x86)\GnuWin32\bin). 
 
-4. Create the Private Key:
+4. Create a Private Key:
 > openssl genrsa -out private_key.pem 512
 
 If no file was created, check if you have write permissions in the current location. You can also change the location of the generated file to something like: 
