@@ -39,6 +39,7 @@ This solution uses 512 bit RSA keys. To generate necessary keys, you need to dow
 * OpenSSL - to generate private & public key pair
 
 ## TODO
+* Reset password flow
 * Replace 512 bit keys with something more safe
 * Full registration support (nodemailer)
 * Meaningful messages for the user in all cases
