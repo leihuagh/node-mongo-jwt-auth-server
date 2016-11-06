@@ -15,7 +15,7 @@ Then you need to generate your own key pair and put them in the config/environme
 ## Private & Public key pair generation
 This solution uses 512 bit RSA keys. To generate necessary keys, you need to download OpenSSL software. I will describe how to do this on Windows. 
 
-1. Download a suitable package (the first one in Download section should be fine): http://downloads.sourceforge.net/gnuwin32/openssl-0.9.8h-1-setup.exe
+1. Download a suitable package: http://downloads.sourceforge.net/gnuwin32/openssl-0.9.8h-1-setup.exe
 
 2. Install it on your machine. 
 
