@@ -24,18 +24,20 @@ module.exports = {
             emailName: "testac111222",  // first part of the email address (before @ sign)
             emailDomain: "gmail.com",   // domain part of the email address (after @)
             emailSmtp: "smtp.gmail.com",// smtp address of the email provider
-            password: "!"   // password to the email account
+            password: "testac111222!"   // password to the email account
         },
         forgotPassword: {               // content of the "forgot password" email
             subject: "Zmień hasło",
             htmlContent: function(user, domainReturnAddress) {
+                var linkToResetPasswordPage = domainReturnAddress + "/reset/" + user.resetPasswordToken;
+
                 var htmlContent =
                     "<div>" +
                     "<div>" +
                     "Aby zmienić hasło do konta w aplikacji ..., kliknij w link:" +
                     "</div>" +
                     "<div style='font-weight: bold; margin-top:10px; font-size:16px;'>" +
-                    "<a href=\'" + domainReturnAddress + "/reset/" + user.resetPasswordToken + "\'>" +
+                    "<a href=\'" + linkToResetPasswordPage + "\'>" +
                     "Link do zmiany hasła" +
                     "</a>" +
                     "</div>" +
@@ -60,13 +62,15 @@ module.exports = {
 
             },
             htmlContent: function(user, domainReturnAddress) {
+                var linkToEmailVerificationPage = domainReturnAddress + "/emailVerification/" + user.emailActivationToken;
+
                 var htmlContent =
                     "<div>" +
                     "<div>" +
                     "Aby aktywować swoje konto, kliknij w link:" +
                     "</div>" +
                     "<div style='font-weight: bold; margin-top:10px; font-size:16px;'>" +
-                    "<a href=\'" + domainReturnAddress + "/emailVerification/" + user.emailActivationToken + "\'>" +
+                    "<a href=\'" + linkToEmailVerificationPage + "\'>" +
                     "Aktywacja konta" +
                     "</a>" +
                     "</div>" +

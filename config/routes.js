@@ -1,6 +1,6 @@
 const Authentication = require('../controllers/authentication');
 const AccountRecovery = require('../controllers/accountRecovery');
-const AccountVerification = require('../controllers/accountVerification');
+const AccountActivation = require('../controllers/accountActivation');
 
 const passportService = require('../services/passport');
 const passport = require('passport');
@@ -25,7 +25,7 @@ module.exports = function(app) {
     app.post('/forgotpassword', AccountRecovery.forgotPassword);
     app.get('/reset/:token', AccountRecovery.resetPassword);
 
-    app.get('/emailverification/:token', AccountVerification.verifyEmail)
+    app.get('/emailverification/:token', AccountActivation.verifyEmail)
 
 
 };
