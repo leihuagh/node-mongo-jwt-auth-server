@@ -1,7 +1,9 @@
 const Authentication = require('../controllers/authentication');
+const AccountRecovery = require('../controllers/accountRecovery');
+const AccountVerification = require('../controllers/accountVerification');
+
 const passportService = require('../services/passport');
 const passport = require('passport');
-const AccountRecovery = require('../controllers/accountRecovery');
 
 const requireAuth = passport.authenticate('jwt', { session: false });
 const requireSignIn = passport.authenticate('local', { session: false });
@@ -23,7 +25,7 @@ module.exports = function(app) {
     app.post('/forgotpassword', AccountRecovery.forgotPassword);
     app.get('/reset/:token', AccountRecovery.resetPassword);
 
-    app.get('/verificationemail', function(){})
+    app.get('/emailverification/:token', AccountVerification.verifyEmail)
 
 
 };

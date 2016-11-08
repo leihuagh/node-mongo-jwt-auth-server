@@ -7,8 +7,8 @@ const userSchema = new Schema({
     password: String,
     resetPasswordToken: String,
     resetPasswordExpires: Number,
-    emailVerifificationToken: String,
-    emailVerified: Boolean
+    emailActivationToken: String,
+    active: Boolean
 });
 
 userSchema.pre('save', function(next) {

@@ -24,18 +24,18 @@ module.exports = {
             emailName: "testac111222",  // first part of the email address (before @ sign)
             emailDomain: "gmail.com",   // domain part of the email address (after @)
             emailSmtp: "smtp.gmail.com",// smtp address of the email provider
-            password: ""   // password to the email account
+            password: "!"   // password to the email account
         },
         forgotPassword: {               // content of the "forgot password" email
             subject: "Link do zmiany hasła",
-            htmlContent: function(user) {
+            htmlContent: function(user, domainReturnAddress) {
                 var htmlContent =
                     "<div>" +
                     "<div>" +
                     "Aby zmienić hasło do konta w aplikacji ..., kliknij w link:" +
                     "</div>" +
                     "<div style='font-weight: bold; margin-top:10px; font-size:16px;'>" +
-                    "<a href='http://localhost:8887/reset/" + user.resetPasswordToken + "'>" +
+                    "<a href=\'" + domainReturnAddress + "/reset/" + user.resetPasswordToken + "\'>" +
                     "Link do zmiany hasła" +
                     "</a>" +
                     "</div>" +
@@ -48,8 +48,8 @@ module.exports = {
 
                 return htmlContent
             },
-            txtContent: function(user) {
-                var txtContent = "Aby zmienić hasło, kliknij w link: " + "www.medpanel.pl/reset/" + user.resetPasswordToken;
+            txtContent: function(user, domainReturnAddress) {
+                var txtContent = "Aby zmienić hasło, kliknij w link: " + domainReturnAddress + "/reset/" + user.resetPasswordToken;
 
                 return txtContent
             }

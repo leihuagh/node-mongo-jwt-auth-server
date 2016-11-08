@@ -2,6 +2,8 @@ const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
 const config = require('../config/environment');
+const crypto = require('crypto');
+const nodemailerService = require('../services/nodemailer');
 
 function tokenForUser(user) {
     const timestamp = new Date().getTime();
@@ -35,6 +37,7 @@ exports.signup = function(req, res, next) {
         const user = new User({
             email: email,
             password: password,
+            emailActivationToken: crypto.randomBytes(20).toString('hex'),
             active: false
         });
 
@@ -43,8 +46,7 @@ exports.signup = function(req, res, next) {
                 return next(error)
             }
 
-            
-
+            nodemailerService.sendVerificationEmail(user, req.baseUrl);
             return res.json({ token: tokenForUser(user) })
         });
 

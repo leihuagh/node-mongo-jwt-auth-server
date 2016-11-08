@@ -37,7 +37,7 @@ exports.forgotPassword = function (req, res, next){
         },
         function(token, existingUser, done) {
             // sending
-            nodemailerService.sendForgotPasswordEmail(existingUser);
+            nodemailerService.sendForgotPasswordEmail(existingUser, req.body.domain);
             return res.status(200).send({ msgId: 'EMAIL_WITH_RESET_TOKEN_SENT', existingUser: existingUser });
         }
     ], function(err) {

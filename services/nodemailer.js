@@ -13,14 +13,14 @@ const transporter = nodemailer.createTransport({
 });
 
 
-exports.sendForgotPasswordEmail = function(user) {
+exports.sendForgotPasswordEmail = function(user, domainReturnAddress) {
     var mailOptions = {};
 
-    mailOptions.from = config.nodemailer.from.name + " " + config.nodemailer.from.emailName+config.nodemailer.from.emailDomain;
+    mailOptions.from = config.nodemailer.from.name + " " + config.nodemailer.from.emailName + config.nodemailer.from.emailDomain;
     mailOptions.to = user.email;
     mailOptions.subject = config.nodemailer.forgotPassword.subject;
-    mailOptions.text = config.nodemailer.forgotPassword.txtContent(user);
-    mailOptions.html = config.nodemailer.forgotPassword.htmlContent(user);
+    mailOptions.text = config.nodemailer.forgotPassword.txtContent(user, domainReturnAddress);
+    mailOptions.html = config.nodemailer.forgotPassword.htmlContent(user, domainReturnAddress);
 
     transporter.sendMail(mailOptions, function(err, info) {
         if(err) {
@@ -31,14 +31,14 @@ exports.sendForgotPasswordEmail = function(user) {
     })
 };
 
-exports.sendEmailVerificationEmail = function(user) {
+exports.sendVerificationEmail = function(user, domainReturnAddress) {
     var mailOptions = {};
 
-    mailOptions.from = config.nodemailer.from.name + " " + config.nodemailer.from.emailName+config.nodemailer.from.emailDomain;
+    mailOptions.from = config.nodemailer.from.name + " " + config.nodemailer.from.emailName + config.nodemailer.from.emailDomain;
     mailOptions.to = user.email;
     mailOptions.subject = config.nodemailer.emailVerification.subject;
-    mailOptions.text = config.nodemailer.emailVerification.txtContent(user);
-    mailOptions.html = config.nodemailer.emailVerification.htmlContent(user);
+    mailOptions.text = config.nodemailer.emailVerification.txtContent(user, domainReturnAddress);
+    mailOptions.html = config.nodemailer.emailVerification.htmlContent(user, domainReturnAddress);
 
     transporter.sendMail(mailOptions, function(err, info) {
         if(err) {
