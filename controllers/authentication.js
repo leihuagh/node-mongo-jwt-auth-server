@@ -46,7 +46,7 @@ exports.signup = function(req, res, next) {
                 return next(error)
             }
 
-            nodemailerService.sendVerificationEmail(user, req.baseUrl);
+            nodemailerService.sendVerificationEmail(user, req.body.domain);
             return res.json({ token: tokenForUser(user) })
         });
 

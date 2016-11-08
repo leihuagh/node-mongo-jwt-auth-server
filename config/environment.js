@@ -27,7 +27,7 @@ module.exports = {
             password: "!"   // password to the email account
         },
         forgotPassword: {               // content of the "forgot password" email
-            subject: "Link do zmiany hasła",
+            subject: "Zmień hasło",
             htmlContent: function(user, domainReturnAddress) {
                 var htmlContent =
                     "<div>" +
@@ -55,19 +55,19 @@ module.exports = {
             }
         },
         emailVerification: {            // content of the "Email verification" email
-            subject: "Link potwierdzający rejestrację",
-            txtContent: function(user) {
+            subject: "Aktywuj konto",
+            txtContent: function(user, domainReturnAddress) {
 
             },
-            htmlContent: function(user) {
+            htmlContent: function(user, domainReturnAddress) {
                 var htmlContent =
                     "<div>" +
                     "<div>" +
-                    "Aby potwierdzić adres email w aplikacji ..., kliknij w link:" +
+                    "Aby aktywować swoje konto, kliknij w link:" +
                     "</div>" +
                     "<div style='font-weight: bold; margin-top:10px; font-size:16px;'>" +
-                    "<a href='http://localhost:8887/emailverification/" + user.emailVerifivationToken + "'>" +
-                    "Potwierdzam adres email" +
+                    "<a href=\'" + domainReturnAddress + "/emailVerification/" + user.emailActivationToken + "\'>" +
+                    "Aktywacja konta" +
                     "</a>" +
                     "</div>" +
                     "<div style='margin-top:50px;'>" +
