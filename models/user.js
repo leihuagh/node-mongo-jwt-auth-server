@@ -4,7 +4,11 @@ const bcrypt = require('bcrypt-nodejs');
 
 const userSchema = new Schema({
     email: { type: String, unique: true, lowercase: true },
-    password: String
+    password: String,
+    resetPasswordToken: String,
+    resetPasswordExpires: Number,
+    emailVerifificationToken: String,
+    emailVerified: Boolean
 });
 
 userSchema.pre('save', function(next) {

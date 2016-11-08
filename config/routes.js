@@ -1,6 +1,7 @@
 const Authentication = require('../controllers/authentication');
 const passportService = require('../services/passport');
 const passport = require('passport');
+const AccountRecovery = require('../controllers/accountRecovery');
 
 const requireAuth = passport.authenticate('jwt', { session: false });
 const requireSignIn = passport.authenticate('local', { session: false });
@@ -18,7 +19,11 @@ module.exports = function(app) {
     //routes to be used in the future if needed
     app.post('/token', function(){});
     app.get('/logout', function(){});
-    app.post('/forgotpassword', function(){});
+
+    app.post('/forgotpassword', AccountRecovery.forgotPassword);
+    app.get('/reset/:token', AccountRecovery.resetPassword);
+
     app.get('/verificationemail', function(){})
+
 
 };

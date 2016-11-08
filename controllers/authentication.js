@@ -1,6 +1,6 @@
 const User = require('../models/user');
-var jwt = require('jsonwebtoken');
-var fs = require('fs');
+const jwt = require('jsonwebtoken');
+const fs = require('fs');
 const config = require('../config/environment');
 
 function tokenForUser(user) {
@@ -22,10 +22,10 @@ exports.signup = function(req, res, next) {
         return res.status(422).send({ error: 'You must provide email and password' })
     }
 
-    User.findOne({ email: email.toLowerCase() }, function(error, existingUser) {
+    User.findOne({ email: email.toLowerCase() }, function(err, existingUser) {
 
-        if(error) {
-            return next(error);
+        if(err) {
+            return next(err);
         }
 
         if(existingUser) {
@@ -34,13 +34,16 @@ exports.signup = function(req, res, next) {
 
         const user = new User({
             email: email,
-            password: password
+            password: password,
+            active: false
         });
 
         user.save(function(error) {
             if(error) {
                 return next(error)
             }
+
+            
 
             return res.json({ token: tokenForUser(user) })
         });
