@@ -35,13 +35,13 @@ This solution uses 512 bit RSA keys. To generate necessary keys, you need to dow
 * Node.js
 * Passport
 * Bcrypt
+* nodemailer
 * MongoDB (Mongoose)
 * OpenSSL - to generate private & public key pair
 
 ## TODO
-* Reset password flow
+* Dedicated html pages/configurable URLs for reset password/verification email pathways
+* "Return Url" feature in reset password pathway
 * Replace 512 bit keys with something more safe
-* Full registration support (nodemailer)
 * Meaningful messages for the user in all cases
 * Tests
-* "How to Use" section
