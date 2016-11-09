@@ -1,4 +1,4 @@
-# node-mongo-jwt-auth-server
+## Auth Server with Express 4, MongoDB, JWT Token, Private & Public Key encryption
 This is a realization of the Auth Server, which should run independently from your Resource (API) Server.
 
 This solution is based on private & public key pair encryption method. This method helps when you want to avoid sharing "secret" string if there is a need to separate authorization logic from the Resource Server. Thanks to the generated keys you can keep the private key in the Auth Server (and only there) and your "Public" Resource Server (public API) will handle the token decryption (validation, and multitenancy if needed) using only the public key without ever knowing how the private key looks like. 
